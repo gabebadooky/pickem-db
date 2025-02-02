@@ -1,0 +1,35 @@
+/******************************
+File: proc_drop_db.sql
+Last Update: 2/1/2025
+Description: This script drops all objects from the PICKEM_DB in the 
+                proper sequence to avoid violating database constraints
+******************************/
+
+
+DELIMITER //
+
+DROP PROCEDURE IF EXISTS PROC_DROP_DB //
+
+CREATE PROCEDURE PROC_DROP_DB ()
+BEGIN
+
+    CALL PROC_DELETE_DATA;
+
+    DROP VIEW IF EXISTS GET_GAMES_VW;
+    DROP VIEW IF EXISTS GET_TEAMS_VW;
+    DROP VIEW IF EXISTS GET_PICKS_VW;
+
+    DROP TABLE IF EXISTS GAMES;
+    DROP TABLE IF EXISTS TEAMS;
+    DROP TABLE IF EXISTS PICKS;    
+    DROP TABLE IF EXISTS SCORING;
+    DROP TABLE IF EXISTS USERS;
+    DROP TABLE IF EXISTS ODDS;
+    DROP TABLE IF EXISTS LOCATIONS;
+    DROP TABLE IF EXISTS BOX_SCORES;
+    DROP TABLE IF EXISTS TEAM_STATS;
+    DROP TABLE IF EXISTS RECORDS;
+
+END //
+
+DELIMITER ;
