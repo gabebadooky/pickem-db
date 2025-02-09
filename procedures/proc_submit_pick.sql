@@ -1,7 +1,15 @@
 /******************************
 File: proc_submit_pick.sql
-Last Update: 2/2/2025
-Description: This script updates a given user pick
+Last Update: 2/10/2025
+Description: Procedure that updates the values of 'team picked' and
+                'pick weight' for the given user pick
+Accepts:
+    - 'userid'
+    - 'gameid'
+    - 'team picked'
+    - 'pick weight'
+Returns:
+    - 'status message'
 ******************************/
 
 
@@ -11,9 +19,12 @@ USE PICKEM_DB //
 
 DROP PROCEDURE IF EXISTS PROC_SUBMIT_PICK //
 
-CREATE PROCEDURE PROC_SUBMIT_PICK (IN IN_USER_ID INT, IN IN_GAME_ID VARCHAR(25),
-                                    IN IN_TEAM_PICKED VARCHAR(25), IN IN_PICK_WEIGHT CHAR(1),  
-                                    OUT OUT_STATUS VARCHAR(100))
+CREATE PROCEDURE PROC_SUBMIT_PICK (
+    IN IN_USER_ID INT, 
+    IN IN_GAME_ID VARCHAR(25),
+    IN IN_TEAM_PICKED VARCHAR(25), 
+    IN IN_PICK_WEIGHT CHAR(1),  
+    OUT OUT_STATUS VARCHAR(100))
 
 BEGIN
 

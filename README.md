@@ -26,8 +26,14 @@ Pickem application<br>
 
 ## Usage
 The database stores all relavent data in a normalized relational schema for the backend of the Pickem application. Additionally the database includes the following objects, for the foundational functionality of the application:<br>
-- **PROC_CREATE_USER**: Accepts 'username' and 'password hash' strings to create a new user account by inserting new records into the `USERS` and `PICKS` tables
-- **PROC_UPDATE_USER**: Accepts
-- **GET_PICKS_VW**, **GET_GAMES_VW**, **GET_TEAMS_VW**
+- **PROC_CREATE_USER**
+- **PROC_UPDATE_USER_NOTIFICATION_PREFERENCE**
+- **PROC_UPDATE_USER_EMAIL**
+- **PROC_UPDATE_USER_PHONE**
+- **PROC_SUBMIT_PICK**
+- **GET_PICKS_VW**
+- **GET_GAMES_VW**
+- **GET_TEAMS_VW**
+- **PROC_DELETE_DATA**
+- **PROC_DROP_DB**
 
-## License

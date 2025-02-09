@@ -1,8 +1,13 @@
 /******************************
 File: proc_update_user_phone.sql
-Last Update: 2/9/2025
-Description: This script updates the phone number 
-                of the given user record
+Last Update: 2/10/2025
+Description: Procedure that updates the value of 'phone' for 
+                the given user account
+Accepts:
+    - 'userid' 
+    - 'new phone'
+Returns:
+    - 'status message'
 ******************************/
 
 
@@ -12,8 +17,11 @@ USE PICKEM_DB //
 
 DROP PROCEDURE IF EXISTS PROC_UPDATE_USER_PHONE //
 
-CREATE PROCEDURE PROC_UPDATE_USER_PHONE (IN IN_USER_ID INT, IN IN_PHONE VARCHAR(10),
-                                    OUT OUT_STATUS VARCHAR(100))
+CREATE PROCEDURE PROC_UPDATE_USER_PHONE (
+    IN IN_USER_ID INT, 
+    IN IN_PHONE VARCHAR(10),
+    OUT OUT_STATUS VARCHAR(100)
+)
 
 BEGIN
 

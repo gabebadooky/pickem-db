@@ -1,8 +1,16 @@
 /******************************
 File: proc_create_views.sql
-Last Update: 2/1/2025
-Description: This script defines the views
-             for the PICKEM_DB database.
+Last Update: 2/10/2025
+Description: This script defines the views for the PICKEM_DB database.
+
+GET_PICKS_VW: View that returns pick-related data, intended to be
+                filtered on 'user id' or 'game id'
+GET_GAMES_VW: View that returns games-related data, consolidated from
+                various web sources, and is intended to be the foundational
+                'games' data object for the application
+GET_TEAMS_VW: View that returns teams-related data, intended to be 
+                the foundational 'teams' data object for the application
+
 ******************************/
 
 
