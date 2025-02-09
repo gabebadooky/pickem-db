@@ -8,6 +8,8 @@ Description: This script defines the views
 
 DELIMITER //
 
+USE PICKEM_DB //
+
 DROP PROCEDURE IF EXISTS PROC_CREATE_VIEWS //
 
 CREATE PROCEDURE PROC_CREATE_VIEWS ()

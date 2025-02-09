@@ -8,6 +8,8 @@ Description: This script deletes all data from the PICKEM_DB in the
 
 DELIMITER //
 
+USE PICKEM_DB //
+
 DROP PROCEDURE IF EXISTS PROC_DELETE_DATA //
 
 CREATE PROCEDURE PROC_DELETE_DATA ()
