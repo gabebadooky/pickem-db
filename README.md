@@ -2,7 +2,7 @@
 > Relational database for the Confidence Pickem project
 
 ## Technologies 
-- MySQL 8
+- MySQL9.2
 
 ## Getting Started
 1. Install MySQL Community Server
