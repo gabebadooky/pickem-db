@@ -1,11 +1,11 @@
 /******************************
-File: proc_update_user_email.sql
-Last Update: 2/10/2025
-Description: Procedure that updates the value of 'email address'
-                for the given user account
+File: proc_update_user_phone.sql
+Last Update: 2/22/2025
+Description: Procedure that updates the value of 'favorite team' for 
+                the given user account
 Accepts:
     - 'userid' 
-    - 'new email address'
+    - 'new team id'
 Returns:
     - 'status message'
 ******************************/
@@ -14,11 +14,11 @@ USE PICKEM_DB;
 
 DELIMITER //
 
-DROP PROCEDURE IF EXISTS PROC_UPDATE_USER_EMAIL //
+DROP PROCEDURE IF EXISTS PROC_UPDATE_USER_FAVORITE_TEAM //
 
-CREATE PROCEDURE PROC_UPDATE_USER_EMAIL (
+CREATE PROCEDURE PROC_UPDATE_USER_FAVORITE_TEAM (
     IN IN_USER_ID INT, 
-    IN IN_EMAIL_ADDRESS VARCHAR(75),
+    IN IN_FAVORITE_TEAM VARCHAR(10),
     OUT OUT_STATUS VARCHAR(100)
 )
 
@@ -33,7 +33,7 @@ BEGIN
     END;
 
     UPDATE USERS
-    SET EMAIL_ADDRESS = IN_EMAIL_ADDRESS
+    SET FAVORITE_TEAM = IN_FAVORITE_TEAM
     WHERE USER_ID = IN_USER_ID;
 
     SELECT 'Success';

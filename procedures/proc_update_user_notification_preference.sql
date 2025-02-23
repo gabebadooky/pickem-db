@@ -10,10 +10,9 @@ Returns:
     - 'status message'
 ******************************/
 
+USE PICKEM_DB;
 
 DELIMITER //
-
-USE PICKEM_DB //
 
 DROP PROCEDURE IF EXISTS PROC_UPDATE_USER_NOTIFICATION_PREFERENCE //
 

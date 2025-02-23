@@ -12,10 +12,9 @@ Returns:
     - 'status message'
 ******************************/
 
+USE PICKEM_DB;
 
 DELIMITER //
-
-USE PICKEM_DB //
 
 DROP PROCEDURE IF EXISTS PROC_SUBMIT_PICK //
 

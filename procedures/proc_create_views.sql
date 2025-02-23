@@ -13,10 +13,9 @@ GET_TEAMS_VW: View that returns teams-related data, intended to be
 
 ******************************/
 
+USE PICKEM_DB;
 
 DELIMITER //
-
-USE PICKEM_DB //
 
 DROP PROCEDURE IF EXISTS PROC_CREATE_VIEWS //
 
