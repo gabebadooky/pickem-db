@@ -1,5 +1,5 @@
 /******************************
-File: proc_load_locations.sql
+File: proc_load_location.sql
 Last Update: 2/26/2025
 Description: This script inserts a new locations record if one does not
 				already exist or updates the existing one
@@ -9,9 +9,9 @@ USE PICKEM_DB;
 
 DELIMITER //
 
-DROP PROCEDURE IF EXISTS PROC_LOAD_LOCATIONS //
+DROP PROCEDURE IF EXISTS PROC_LOAD_LOCATION //
 
-CREATE PROCEDURE PROC_LOAD_LOCATIONS (
+CREATE PROCEDURE PROC_LOAD_LOCATION (
 	IN  IN_STADIUM      VARCHAR(50),
 	IN  IN_CITY         VARCHAR(50),
 	IN  IN_STATE        VARCHAR(20),

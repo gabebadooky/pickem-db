@@ -1,7 +1,7 @@
 /******************************
-File: proc_load_records.sql
+File: proc_load_record.sql
 Last Update: 2/26/2025
-Description: This script inserts a new records record if one does not
+Description: This script inserts a new record row if one does not
 				already exist or updates the existing one
 ******************************/
 
@@ -9,9 +9,9 @@ USE PICKEM_DB;
 
 DELIMITER //
 
-DROP PROCEDURE IF EXISTS PROC_LOAD_RECORDS //
+DROP PROCEDURE IF EXISTS PROC_LOAD_RECORD //
 
-CREATE PROCEDURE PROC_LOAD_RECORDS (
+CREATE PROCEDURE PROC_LOAD_RECORD (
 	IN IN_TEAM_ID		VARCHAR(25),
 	IN IN_RECORD_TYPE	VARCHAR(10),
 	IN IN_WINS			TINYINT,
