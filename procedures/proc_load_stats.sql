@@ -1,6 +1,6 @@
 /******************************
 File: proc_load_stats.sql
-Last Update: 2/25/2025
+Last Update: 2/26/2025
 Description: This script inserts a new stats record if one does not
 				already exist or updates the existing one
 ******************************/
@@ -30,7 +30,7 @@ BEGIN
         UPDATE TEAM_STATS 
 			SET VALUE = IN_VALUE
 			WHERE TEAM_ID = IN_TEAM_ID
-				AND SOURCE = IN_TYPE;
+				AND TYPE = IN_TYPE;
         
 	END IF;
 
