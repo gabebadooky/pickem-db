@@ -16,3 +16,11 @@
 11. Develop `PROC_CREATE_DB` procedure to create all database objects
 12. Instantiate database locally from scripts
 13. Unit test each database object
+    - Later enhanced database to develop procedures to load external data (insert new records, or update existing records)
+        - `PROC_LOAD_GAMES`
+        - `PROC_LOAD_TEAMS`
+        - `PROC_LOAD_ODDS`
+        - `PROC_LOAD_STATS`
+        - `PROC_LOAD_RECORDS`
+        - `PROC_LOAD_LOCATION`
+        - `PROC_LOAD_BOX_SCORE`
