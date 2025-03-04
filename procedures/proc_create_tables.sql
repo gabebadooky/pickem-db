@@ -109,7 +109,7 @@ BEGIN
         TEAM_NAME       	VARCHAR(50)     NULL,
         TEAM_MASCOT     	VARCHAR(50)     NULL,
         POWER_CONFERENCE   	BOOLEAN         NULL,
-        TEAM_LOGO_URL   	VARCHAR(50)     NULL,
+        TEAM_LOGO_URL   	VARCHAR(100)     NULL,
 
         CONSTRAINT PK_TEAMS PRIMARY KEY (TEAM_ID)
     );
