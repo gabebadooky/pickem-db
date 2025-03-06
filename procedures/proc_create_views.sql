@@ -1,6 +1,6 @@
 /******************************
 File: proc_create_views.sql
-Last Update: 2/10/2025
+Last Update: 3/5/2025
 Description: This script defines the views for the PICKEM_DB database.
 
 GET_PICKS_VW: View that returns pick-related data, intended to be
@@ -148,7 +148,7 @@ BEGIN
             TEAM.DIVISION_NAME,
             TEAM.TEAM_NAME,
             TEAM.TEAM_MASCOT,
-            TEAM.G5_CONFERENCE,
+            TEAM.POWER_CONFERENCE,
             TEAM.TEAM_LOGO_URL,
             OVERALL_RECORD.WINS OVERALL_WINS,
             OVERALL_RECORD.LOSSES OVERALL_LOSSES,
