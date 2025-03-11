@@ -42,7 +42,7 @@ BEGIN
     
     ELSE
         
-        # Update existing row
+        /*** Update existing row ***/
 		UPDATE GAMES 
 		SET 
 			LEAGUE = IN_LEAGUE, 
