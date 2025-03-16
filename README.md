@@ -23,7 +23,11 @@ https://dev.mysql.com/downloads/mysql/
     a) Create a copy of `sample-setup.sh` and rename the new file as `setup.sh`<br>
     b) Modify the username, password and database parameters<br>
     `bash setup.sh`
-    <br><br>
+    <br>
+    **Powershell**<br>
+    a) Create a copy of `sample-setup.ps` and rename the new file as `setup.ps1`<br>
+    b) Modify the username, password and database parameters<br>
+    `powershell setup.ps1`
 
 3. Instantiate all of the tables, constraints, relationships and views required for the 
 Pickem application<br>
