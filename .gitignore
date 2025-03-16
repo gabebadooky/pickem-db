@@ -1,0 +1,2 @@
+# Ignore setup file with username, password and database parameters for database
+setup.sh
