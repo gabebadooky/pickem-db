@@ -1,3 +1,7 @@
+# Copy this file and rename to setup.sh
+# Replace $SQLServer, $Database, $Username, $Password, and $ScriptDirectory for PICKEM_DB
+
+
 # Import the required module
 Import-Module dbatools
 
@@ -23,4 +27,3 @@ foreach ($file in $SQLFiles) {
     Invoke-DbaQuery -SqlInstance $SQLServer -Database $Database -File $file.FullName -SqlCredential $Credentials
 }
 
-Write-Host "All SQL files executed successfully."
