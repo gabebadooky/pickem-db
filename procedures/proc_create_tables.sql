@@ -40,7 +40,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS BOX_SCORES (
-        GAME_ID         VARCHAR(25)     NOT NULL,
+        GAME_ID         VARCHAR(100)     NOT NULL,
         TEAM_ID         VARCHAR(25)     NOT NULL,
         Q1_SCORE        SMALLINT        NULL,
         Q2_SCORE        SMALLINT        NULL,
