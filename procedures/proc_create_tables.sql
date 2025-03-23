@@ -121,7 +121,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS GAMES (
-        GAME_ID         VARCHAR(25)     NOT NULL,
+        GAME_ID         VARCHAR(100)     NOT NULL,
         LEAGUE          VARCHAR(5)      NOT NULL,
         WEEK            TINYINT         NOT NULL,
         YEAR            YEAR            NOT NULL,
