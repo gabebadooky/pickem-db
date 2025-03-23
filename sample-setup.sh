@@ -11,7 +11,6 @@ directory=./path/to/directory/*.sql
 
 
 mysql -u $username -e "CREATE DATABASE IF NOT EXISTS $database"
-echo "$database Database Created!"
 
 for script in $directory
 do
@@ -20,5 +19,6 @@ do
 done
 
 mysql -u $username $database -e "CALL PROC_CREATE_DB()"
+echo "$database Database Created!"
 
 unset MYSQL_PWD

@@ -1,6 +1,6 @@
 /******************************
 File: proc_load_game.sql
-Last Update: 2/25/2025
+Last Update: 3/23/2025
 Description: This script inserts a new game record if one does not
 				already exist or updates the existing one
 ******************************/
@@ -15,6 +15,7 @@ CREATE PROCEDURE PROC_LOAD_GAME (
 	IN IN_GAME_ID VARCHAR(100),
     IN IN_LEAGUE VARCHAR(5),
     IN IN_WEEK TINYINT,
+    IN IN_YEAR YEAR,
     IN IN_CBS_CODE VARCHAR(50),
     IN IN_ESPN_CODE VARCHAR(50),
     IN IN_FOX_CODE VARCHAR(50),
@@ -33,11 +34,11 @@ BEGIN
     IF (SELECT COUNT(*) FROM GAMES WHERE GAME_ID = IN_GAME_ID) = 0 THEN
         
         /*** Insert New Game Row ***/
-        INSERT INTO GAMES (GAME_ID, LEAGUE, WEEK, CBS_CODE, ESPN_CODE, FOX_CODE, 
+        INSERT INTO GAMES (GAME_ID, LEAGUE, WEEK, YEAR, CBS_CODE, ESPN_CODE, FOX_CODE, 
 							VEGAS_CODE, AWAY_TEAM_ID, HOME_TEAM_ID, DATE, TIME, 
                             TV_COVERAGE, STADIUM, CITY, GAME_FINISHED)
-			VALUES (IN_GAME_ID, IN_LEAGUE, IN_WEEK, IN_CBS_CODE, IN_ESPN_CODE, IN_FOX_CODE,
-					IN_VEGAS_CODE, IN_AWAY_TEAM_ID, IN_HOME_TEAM_ID, IN_DATE, 
+			VALUES (IN_GAME_ID, IN_LEAGUE, IN_WEEK, IN_YEAR, IN_CBS_CODE, IN_ESPN_CODE, 
+					IN_FOX_CODE, IN_VEGAS_CODE, IN_AWAY_TEAM_ID, IN_HOME_TEAM_ID, IN_DATE, 
                     IN_TIME, IN_TV_COVERAGE, IN_STADIUM, IN_CITY, IN_GAME_FINISHED);
     
     ELSE
@@ -46,7 +47,8 @@ BEGIN
 		UPDATE GAMES 
 		SET 
 			LEAGUE = IN_LEAGUE, 
-			WEEK = IN_WEEK, 
+			WEEK = IN_WEEK,
+            YEAR = IN_YEAR,
 			CBS_CODE = IN_CBS_CODE, 
 			ESPN_CODE = IN_ESPN_CODE, 
 			FOX_CODE = IN_FOX_CODE, 
