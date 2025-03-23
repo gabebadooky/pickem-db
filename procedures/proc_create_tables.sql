@@ -155,7 +155,7 @@ BEGIN
 
     CREATE TABLE IF NOT EXISTS PICKS (
         USER_ID         INT             NOT NULL,
-        GAME_ID         VARCHAR(25)     NOT NULL,
+        GAME_ID         VARCHAR(100)     NOT NULL,
         TEAM_PICKED     VARCHAR(25)     NULL,
         PICK_WEIGHT     CHAR(1)         NULL,
 
