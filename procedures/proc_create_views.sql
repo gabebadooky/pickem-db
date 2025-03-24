@@ -33,7 +33,6 @@ BEGIN
             PICK.PICK_WEIGHT,
 
             -- GAME DETAILS
-            GAME.GAME_ID,
             GAME.LEAGUE,
             GAME.WEEK,
             GAME.AWAY_TEAM_ID,
@@ -95,7 +94,7 @@ BEGIN
             HOME_BS.Q3_SCORE AWAY_Q3_BOX_SCORE,
             HOME_BS.Q4_SCORE AWAY_Q4_BOX_SCORE,
             HOME_BS.OVERTIME AWAY_OVERTIME_BOX_SCORE,
-            HOME_BS.TOTAL  AWAY_TOTAL_BOX_SCORE
+            HOME_BS.TOTAL  AWAY_TOTAL_BOX_SCORE,
 
             -- AWAY TEAM DETAILS
             AWAY.TEAM_ID,
@@ -115,12 +114,12 @@ BEGIN
             AWAY_OVERALL_RECORD.TIES OVERALL_TIES,
             AWAY_CONFERENCE_RECORD.WINS CONFERENCE_WINS,
             AWAY_CONFERENCE_RECORD.LOSSES CONFERENCE_LOSSES,
-            AWAY_CONFERENCE_RECORD.TIES CONFERENCE_TIES
+            AWAY_CONFERENCE_RECORD.TIES CONFERENCE_TIES,
 
             -- HOME TEAM DETAILS
-            HOME.TEAM_ID,
-            HOME.CBS_CODE,
-            HOME.ESPN_CODE,
+            HOME.TEAM_ID HOME_TEAM_ID,
+            HOME.CBS_CODE HOME_CBS_CODE,
+            HOME.ESPN_CODE HOME_ESPN_CODE,
             HOME.FOX_CODE,
             HOME.VEGAS_CODE,
             HOME.CONFERENCE_CODE,
@@ -174,21 +173,21 @@ BEGIN
                     AND GAME.HOME_TEAM_ID = HOME_BS.TEAM_ID
 
                 LEFT JOIN TEAMS AWAY
-                    ON GAME.AWAY_TEAM_ID = AWAY_TEAM.TEAM_ID
+                    ON GAME.AWAY_TEAM_ID = AWAY.TEAM_ID
                 LEFT JOIN RECORDS AWAY_OVERALL_RECORD 
-                    ON TEAM.TEAM_ID = AWAY_OVERALL_RECORD.TEAM_ID
+                    ON AWAY.TEAM_ID = AWAY_OVERALL_RECORD.TEAM_ID
                     AND AWAY_OVERALL_RECORD.RECORD_TYPE = 'Overall'
                 LEFT JOIN RECORDS AWAY_CONFERENCE_RECORD
-                    ON TEAM.TEAM_ID = AWAY_CONFERENCE_RECORD.TEAM_ID
+                    ON AWAY.TEAM_ID = AWAY_CONFERENCE_RECORD.TEAM_ID
                     AND AWAY_CONFERENCE_RECORD.RECORD_TYPE = 'Conference'
 
                 LEFT JOIN TEAMS HOME
-                    ON GAME.AWAY_TEAM_ID = HOME_TEAM.TEAM_ID
+                    ON GAME.HOME_TEAM_ID = HOME.TEAM_ID
                 LEFT JOIN RECORDS HOME_OVERALL_RECORD 
-                    ON TEAM.TEAM_ID = HOME_OVERALL_RECORD.TEAM_ID
+                    ON HOME.TEAM_ID = HOME_OVERALL_RECORD.TEAM_ID
                     AND HOME_OVERALL_RECORD.RECORD_TYPE = 'Overall'
                 LEFT JOIN RECORDS HOME_CONFERENCE_RECORD
-                    ON TEAM.TEAM_ID = HOME_CONFERENCE_RECORD.TEAM_ID
+                    ON HOME.TEAM_ID = HOME_CONFERENCE_RECORD.TEAM_ID
                     AND HOME_CONFERENCE_RECORD.RECORD_TYPE = 'Conference';
     /************************************************************/
     /************************************************************/
