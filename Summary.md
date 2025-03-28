@@ -11,16 +11,21 @@
         - `PROC_UPDATE_USER_EMAIL`
         - `PROC_UPDATE_USER_NOTIFICATION_PREFERENCE`
         - `PROC_UPDATE_USER_PHONE`
+        - `PROC_UPDATE_FAVORITE_TEAM`
 9. Develop `PROC_SUBMIT_PICK` procedure to execute update on PICKS table for given USER_ID and GAME_ID
 10. Develop `PROC_DROP_DB` procedure to drop all database objects
 11. Develop `PROC_CREATE_DB` procedure to create all database objects
 12. Instantiate database locally from scripts
 13. Unit test each database object
     - Later enhanced database to develop procedures to load external data (insert new records, or update existing records)
-        - `PROC_LOAD_GAMES`
-        - `PROC_LOAD_TEAMS`
+        - `PROC_LOAD_GAME`
+        - `PROC_LOAD_TEAM`
         - `PROC_LOAD_ODDS`
         - `PROC_LOAD_STATS`
-        - `PROC_LOAD_RECORDS`
+        - `PROC_LOAD_SCORING`
+        - `PROC_LOAD_RECORD`
         - `PROC_LOAD_LOCATION`
         - `PROC_LOAD_BOX_SCORE`
+14. Develop automated scripts to instantiate database without having to run each file in the `procedures` directory
+    - `setup.sh`
+    - `setup.ps1`

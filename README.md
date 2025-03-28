@@ -17,26 +17,24 @@ https://dev.mysql.com/downloads/mysql/
 `brew install mysql`
 <br><br>
 
-2. Execute each script in the `procedures` folder by running the script below:<br>
+2. Run the setup script to create all of the procedures required for the database:<br>
 
     **Bash**<br>
     a) Create a copy of `sample-setup.sh` and rename the new file as `setup.sh`<br>
-    b) Modify the username, password and database parameters<br>
+    b) Modify the username, password and database parameters<br><br>
     `bash setup.sh`
-    <br>
+    <br><br>
     **Powershell**<br>
     a) Create a copy of `sample-setup.ps` and rename the new file as `setup.ps1`<br>
-    b) Modify the username, password and database parameters<br>
+    b) Modify the username, password and database parameters<br><br>
     `powershell setup.ps1`
 
-3. Instantiate all of the tables, constraints, relationships and views required for the 
-Pickem application<br>
+3. Instantiate all of the tables, constraints, relationships and views required for the Pickem application by executing the PROC_CREATE_DB procedure in MySQL<br><br>
 `CALL PROC_CREATE_DB();`
-- If ever needed, execute the command below to delete all data and drop all objects in the pickem_db
-`PROC_DROP_DB();`
 
 ## Usage
-The database stores all relavent data in a normalized relational schema for the backend of the Pickem application. Additionally the database includes the following objects, for the foundational functionality of the application:<br>
+The database stores all relavent data in a normalized relational schema for the backend of the Pickem application. Additionally the database includes the following objects, for the foundational services of the application:<br>
+- **GET_USER_PICKS_VW**
 - **PROC_CREATE_USER**
 - **PROC_UPDATE_USER_NOTIFICATION_PREFERENCE**
 - **PROC_UPDATE_USER_FAVORITE_TEAM**
@@ -51,9 +49,6 @@ The database stores all relavent data in a normalized relational schema for the 
 - **PROC_LOAD_SCORING**
 - **PROC_LOAD_STATS**
 - **PROC_LOAD_TEAM**
-- **GET_PICKS_VW**
-- **GET_GAMES_VW**
-- **GET_TEAMS_VW**
 - **PROC_DELETE_DATA**
 - **PROC_DROP_DB**
 
