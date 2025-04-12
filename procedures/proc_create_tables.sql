@@ -41,7 +41,7 @@ BEGIN
 
     CREATE TABLE IF NOT EXISTS BOX_SCORES (
         GAME_ID         VARCHAR(100)     NOT NULL,
-        TEAM_ID         VARCHAR(25)     NOT NULL,
+        TEAM_ID         VARCHAR(50)     NOT NULL,
         Q1_SCORE        SMALLINT        NULL,
         Q2_SCORE        SMALLINT        NULL,
         Q3_SCORE        SMALLINT        NULL,
@@ -65,7 +65,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS RECORDS (
-        TEAM_ID         VARCHAR(25)     NOT NULL,
+        TEAM_ID         VARCHAR(50)     NOT NULL,
         RECORD_TYPE     VARCHAR(10)     NOT NULL,
         WINS            TINYINT         NULL,
         LOSSES          TINYINT         NULL,
@@ -76,7 +76,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS TEAM_STATS (
-        TEAM_ID         VARCHAR(25)     NOT NULL,
+        TEAM_ID         VARCHAR(50)     NOT NULL,
         TYPE            VARCHAR(100)    NOT NULL,
         VALUE           VARCHAR(25)     NULL,
 
@@ -101,7 +101,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS TEAMS (
-        TEAM_ID         	VARCHAR(25)     NOT NULL,
+        TEAM_ID         	VARCHAR(50)     NOT NULL,
         CBS_CODE        	VARCHAR(50)     NOT NULL,
         ESPN_CODE       	VARCHAR(50)     NOT NULL,
         FOX_CODE        	VARCHAR(50)     NOT NULL,
@@ -156,7 +156,7 @@ BEGIN
     CREATE TABLE IF NOT EXISTS PICKS (
         USER_ID         INT             NOT NULL,
         GAME_ID         VARCHAR(100)     NOT NULL,
-        TEAM_PICKED     VARCHAR(25)     NULL,
+        TEAM_PICKED     VARCHAR(100)     NULL,
         PICK_WEIGHT     CHAR(1)         NULL,
 
         CONSTRAINT PK_PICKS PRIMARY KEY (USER_ID, GAME_ID)
