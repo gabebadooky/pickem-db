@@ -53,6 +53,8 @@ BEGIN
 			SELECT U.USER_ID, G.GAME_ID, '', ''
 			FROM USERS U, GAMES G
 			WHERE U.USERNAME = IN_USERNAME;
+            
+		COMMIT;
 		
 		SET OUT_STATUS = 'Success';
 	END IF;
