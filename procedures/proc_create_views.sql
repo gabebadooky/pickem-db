@@ -220,6 +220,7 @@ BEGIN
             GAME.STADIUM,
             GAME.CITY,
             GAME.STATE,
+            GAME.GAME_FINISHED,
 
             CBS_ODDS.AWAY_MONEYLINE CBS_AWAY_MONEYLINE,
             CBS_ODDS.HOME_MONEYLINE CBS_HOME_MONEYLINE,
@@ -268,12 +269,7 @@ BEGIN
             HOME_BS.TOTAL  AWAY_TOTAL_BOX_SCORE
 
         FROM
-            PICKS PICK
-                INNER JOIN USERS USER
-                    ON PICK.USER_ID = USER.USER_ID
-
-                INNER JOIN GAMES GAME
-                    ON PICK.GAME_ID = GAME.GAME_ID
+			GAMES GAME
                 
                 LEFT JOIN ODDS CBS_ODDS
                     ON GAME.GAME_ID = CBS_ODDS.GAME_ID
