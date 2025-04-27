@@ -51,6 +51,8 @@ BEGIN
 				AND SOURCE = IN_SOURCE;
         
 	END IF;
+    
+    COMMIT;
 
 END //
 

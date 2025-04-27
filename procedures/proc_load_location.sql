@@ -38,6 +38,8 @@ BEGIN
 				AND CITY = IN_CITY;
         
 	END IF;
+    
+    COMMIT;
 
 END //
 

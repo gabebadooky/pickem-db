@@ -35,6 +35,8 @@ BEGIN
     UPDATE USERS
     SET PHONE = IN_PHONE
     WHERE USER_ID = IN_USER_ID;
+    
+    COMMIT;
 
     SELECT 'Success';
 

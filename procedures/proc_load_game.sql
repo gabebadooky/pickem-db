@@ -64,6 +64,8 @@ BEGIN
 		WHERE GAME_ID = IN_GAME_ID;
         
 	END IF;
+    
+    COMMIT;
 
 END //
 

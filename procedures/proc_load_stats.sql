@@ -33,6 +33,8 @@ BEGIN
 				AND TYPE = IN_TYPE;
         
 	END IF;
+    
+    COMMIT;
 
 END //
 

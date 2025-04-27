@@ -38,6 +38,8 @@ BEGIN
 				AND RECORD_TYPE = IN_RECORD_TYPE;
         
 	END IF;
+    
+    COMMIT;
 
 END //
 

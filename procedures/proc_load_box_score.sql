@@ -46,6 +46,8 @@ BEGIN
 				AND TEAM_ID = IN_TEAM_ID;
         
 	END IF;
+    
+    COMMIT;
 
 END //
 

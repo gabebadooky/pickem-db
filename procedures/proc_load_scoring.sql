@@ -34,6 +34,8 @@ BEGIN
 			WHERE PICK_WEIGHT = IN_PICK_WEIGHT;
         
 	END IF;
+    
+    COMMIT;
 
 END //
 
