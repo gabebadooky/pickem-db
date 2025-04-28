@@ -19,6 +19,7 @@ DELIMITER //
 
 DROP PROCEDURE IF EXISTS PROC_CREATE_VIEWS //
 
+
 CREATE PROCEDURE PROC_CREATE_VIEWS ()
 BEGIN
 
@@ -332,12 +333,6 @@ BEGIN
                 LEFT JOIN RECORDS CONFERENCE_RECORD
                     ON TEAM.TEAM_ID = CONFERENCE_RECORD.TEAM_ID
                     AND CONFERENCE_RECORD.RECORD_TYPE = 'Conference';
-    /************************************************************/
-
-
-	/***** GET_TEAMS_VW *****/
-    CREATE OR REPLACE VIEW GET_USERS_VW AS
-        SELECT;
     /************************************************************/
 	
 

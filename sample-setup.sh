@@ -7,7 +7,7 @@ username="my-username"
 host="localhost"
 port=3306
 database="my_db"
-directory=./path/to/directory/*.sql
+directory=./*.sql
 
 
 mysql -u $username -e "CREATE DATABASE IF NOT EXISTS $database"

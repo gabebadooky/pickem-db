@@ -28,9 +28,9 @@ BEGIN
 
     CREATE TABLE IF NOT EXISTS USERS (
         USER_ID         INT             NOT NULL    AUTO_INCREMENT,
-        USERNAME        VARCHAR(25)     NOT NULL,
-        PWDHASH         VARCHAR(25)     NOT NULL,
-        FAVORITE_TEAM	VARCHAR(25)		NULL,
+        USERNAME        VARCHAR(50)     NOT NULL,
+        PWDHASH         VARCHAR(150)     NOT NULL,
+        FAVORITE_TEAM	VARCHAR(50)		NULL,
         NOTIFICATION_PREF   CHAR(1)     NULL,
         EMAIL_ADDRESS   VARCHAR(75)     NULL,
         PHONE           VARCHAR(10)     NULL,
@@ -152,7 +152,7 @@ BEGIN
             FOREIGN KEY (HOME_TEAM_ID) REFERENCES TEAMS(TEAM_ID)*/
     );
 
-
+	
     CREATE TABLE IF NOT EXISTS PICKS (
         USER_ID         INT             NOT NULL,
         GAME_ID         VARCHAR(100)     NOT NULL,
