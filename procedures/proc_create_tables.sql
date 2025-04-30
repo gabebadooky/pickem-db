@@ -29,8 +29,8 @@ BEGIN
     CREATE TABLE IF NOT EXISTS USERS (
         USER_ID         INT             NOT NULL    AUTO_INCREMENT,
         USERNAME        VARCHAR(50)     NOT NULL,
-        PWDHASH         VARCHAR(150)     NOT NULL,
-        FAVORITE_TEAM	VARCHAR(50)		NULL,
+        PWDHASH         VARCHAR(150)    NOT NULL,
+        FAVORITE_TEAM	VARCHAR(100)	NULL,
         NOTIFICATION_PREF   CHAR(1)     NULL,
         EMAIL_ADDRESS   VARCHAR(75)     NULL,
         PHONE           VARCHAR(10)     NULL,
@@ -41,7 +41,7 @@ BEGIN
 
     CREATE TABLE IF NOT EXISTS BOX_SCORES (
         GAME_ID         VARCHAR(100)     NOT NULL,
-        TEAM_ID         VARCHAR(50)     NOT NULL,
+        TEAM_ID         VARCHAR(100)     NOT NULL,
         Q1_SCORE        SMALLINT        NULL,
         Q2_SCORE        SMALLINT        NULL,
         Q3_SCORE        SMALLINT        NULL,
@@ -65,7 +65,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS RECORDS (
-        TEAM_ID         VARCHAR(50)     NOT NULL,
+        TEAM_ID         VARCHAR(100)     NOT NULL,
         RECORD_TYPE     VARCHAR(10)     NOT NULL,
         WINS            TINYINT         NULL,
         LOSSES          TINYINT         NULL,
@@ -76,7 +76,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS TEAM_STATS (
-        TEAM_ID         VARCHAR(50)     NOT NULL,
+        TEAM_ID         VARCHAR(100)     NOT NULL,
         TYPE            VARCHAR(100)    NOT NULL,
         VALUE           VARCHAR(25)     NULL,
 
@@ -101,7 +101,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS TEAMS (
-        TEAM_ID         	VARCHAR(50)     NOT NULL,
+        TEAM_ID         	VARCHAR(100)    NOT NULL,
         CBS_CODE        	VARCHAR(50)     NOT NULL,
         ESPN_CODE       	VARCHAR(50)     NOT NULL,
         FOX_CODE        	VARCHAR(50)     NOT NULL,
@@ -129,8 +129,8 @@ BEGIN
         ESPN_CODE       VARCHAR(50)     NOT NULL,
         FOX_CODE        VARCHAR(50)     NOT NULL,
         VEGAS_CODE      VARCHAR(50)     NOT NULL,
-        AWAY_TEAM_ID    VARCHAR(25)     NOT NULL,
-        HOME_TEAM_ID    VARCHAR(25)     NOT NULL,
+        AWAY_TEAM_ID    VARCHAR(100)     NOT NULL,
+        HOME_TEAM_ID    VARCHAR(100)     NOT NULL,
         DATE            DATE            NULL,
         TIME            TIME            NULL,
         TV_COVERAGE     VARCHAR(25)     NULL,
