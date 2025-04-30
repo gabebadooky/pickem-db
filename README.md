@@ -5,7 +5,7 @@
 - MySQL9.2
 
 ## Getting Started
-1. Install MySQL Community Server
+0. Install MySQL Community Server
 <br>
 **MSI/DMG/TAR Installer**:<br>
 https://dev.mysql.com/downloads/mysql/
@@ -17,7 +17,7 @@ https://dev.mysql.com/downloads/mysql/
 `brew install mysql`
 <br><br>
 
-2. Run the setup script to create all of the procedures required for the database:<br>
+1. Run the setup script to create all of the procedures required for the database:<br>
 
     **Bash**<br>
     a) Create a copy of `sample-setup.sh` and rename the new file as `setup.sh`<br>
@@ -29,8 +29,6 @@ https://dev.mysql.com/downloads/mysql/
     b) Modify the username, password and database parameters<br><br>
     `powershell setup.ps1`
 
-3. Instantiate all of the tables, constraints, relationships and views required for the Pickem application by executing the PROC_CREATE_DB procedure in MySQL<br><br>
-`CALL PROC_CREATE_DB();`
 
 ## Usage
 The database stores all relavent data in a normalized relational schema for the backend of the Pickem application. Additionally the database includes the following objects, for the foundational services of the application:<br>
