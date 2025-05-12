@@ -28,7 +28,7 @@ BEGIN
     CREATE OR REPLACE VIEW GET_USER_PICKS_VW AS
         SELECT
             -- PICKS
-            USER.USERNAME,
+            USER.USER_ID,
             PICK.GAME_ID,
             PICK.TEAM_PICKED,
             PICK.PICK_WEIGHT,
@@ -195,7 +195,7 @@ BEGIN
     /***** GET_PICKS_VW *****/
     CREATE OR REPLACE VIEW GET_PICKS_VW AS
         SELECT
-            USER.USERNAME,
+            USER.USER_ID,
             PICK.GAME_ID,
             PICK.TEAM_PICKED,
             PICK.PICK_WEIGHT
