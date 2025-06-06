@@ -23,6 +23,11 @@ DROP PROCEDURE IF EXISTS PROC_CREATE_VIEWS //
 CREATE PROCEDURE PROC_CREATE_VIEWS ()
 BEGIN
 
+	/***** GET_USER_IDS_VW *****/
+    CREATE OR REPLACE VIEW GET_USER_IDS_VW AS
+		SELECT USER_ID, USERNAME FROM USERS;
+    /*****************************************/
+
     /***** GET_USER_PICKS_VW *****/
     /*****************************************/
     CREATE OR REPLACE VIEW GET_USER_PICKS_VW AS
