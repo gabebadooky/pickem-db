@@ -85,7 +85,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS ODDS (
-        GAME_ID         VARCHAR(100)     NOT NULL,
+        GAME_ID         VARCHAR(100)	NOT NULL,
         GAME_CODE       VARCHAR(50)     NOT NULL,
         SOURCE          VARCHAR(10)     NULL,
         AWAY_MONEYLINE  VARCHAR(5)      NULL,
@@ -101,14 +101,17 @@ BEGIN
     
     
     CREATE TABLE IF NOT EXISTS USER_TEAM_NOTES (
-		USER_ID				INT				NOT NULL,
-		TEAM_ID				VARCHAR(100)	NOT NULL,
-        NOTES				BLOB			NULL
+		USER_ID			INT				NOT NULL,
+		TEAM_ID			VARCHAR(100)	NOT NULL,
+        NOTES			BLOB			NULL,
+        
+        CONSTRAINT PK_USER_TEAM_NOTES PRIMARY KEY (USER_ID, TEAM_ID)
     );
 
 
     CREATE TABLE IF NOT EXISTS TEAMS (
         TEAM_ID         	VARCHAR(100)    NOT NULL,
+        LEAGUE				VARCHAR(5)		NOT NULL,
         CBS_CODE        	VARCHAR(50)     NOT NULL,
         ESPN_CODE       	VARCHAR(50)     NOT NULL,
         FOX_CODE        	VARCHAR(50)     NOT NULL,
@@ -128,7 +131,7 @@ BEGIN
 
 
     CREATE TABLE IF NOT EXISTS GAMES (
-        GAME_ID         VARCHAR(100)     NOT NULL,
+        GAME_ID         VARCHAR(100)	NOT NULL,
         LEAGUE          VARCHAR(5)      NOT NULL,
         WEEK            TINYINT         NOT NULL,
         YEAR            YEAR            NOT NULL,
@@ -136,8 +139,8 @@ BEGIN
         ESPN_CODE       VARCHAR(50)     NOT NULL,
         FOX_CODE        VARCHAR(50)     NOT NULL,
         VEGAS_CODE      VARCHAR(50)     NOT NULL,
-        AWAY_TEAM_ID    VARCHAR(100)     NOT NULL,
-        HOME_TEAM_ID    VARCHAR(100)     NOT NULL,
+        AWAY_TEAM_ID    VARCHAR(100)    NOT NULL,
+        HOME_TEAM_ID    VARCHAR(100)    NOT NULL,
         DATE            DATE            NULL,
         TIME            TIME            NULL,
         TV_COVERAGE     VARCHAR(25)     NULL,
