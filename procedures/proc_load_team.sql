@@ -50,10 +50,10 @@ BEGIN
         # Update existing row
         UPDATE TEAMS 
 			SET 
-				#CBS_CODE = IN_CBS_CODE,
-				#ESPN_CODE = IN_ESPN_CODE, 
-				#FOX_CODE = IN_FOX_CODE, 
-				#VEGAS_CODE = IN_VEGAS_CODE,
+				CBS_CODE = IN_CBS_CODE,
+				ESPN_CODE = IN_ESPN_CODE, 
+				FOX_CODE = IN_FOX_CODE, 
+				VEGAS_CODE = IN_VEGAS_CODE,
                 TEAM_NAME = IN_TEAM_NAME,
                 TEAM_MASCOT = IN_TEAM_MASCOT,
 				CONFERENCE_CODE = IN_CONFERENCE_CODE, 
@@ -64,11 +64,8 @@ BEGIN
                 PRIMARY_COLOR = IN_PRIMARY_COLOR,
                 ALTERNATE_COLOR = IN_ALTERNATE_COLOR
 			WHERE TEAM_ID = IN_TEAM_ID;
-<<<<<<< HEAD
             
 		COMMIT;
-=======
->>>>>>> 612ec98 (Update ESPN_CODE, CBS_CODE, FOX_CODE and VEGAS_CODE if TEAM_ID exists in TEAM)
         
 	END IF;
 
