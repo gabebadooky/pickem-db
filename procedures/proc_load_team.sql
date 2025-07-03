@@ -64,8 +64,11 @@ BEGIN
                 PRIMARY_COLOR = IN_PRIMARY_COLOR,
                 ALTERNATE_COLOR = IN_ALTERNATE_COLOR
 			WHERE TEAM_ID = IN_TEAM_ID;
+<<<<<<< HEAD
             
 		COMMIT;
+=======
+>>>>>>> 612ec98 (Update ESPN_CODE, CBS_CODE, FOX_CODE and VEGAS_CODE if TEAM_ID exists in TEAM)
         
 	END IF;
 
