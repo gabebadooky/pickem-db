@@ -17,16 +17,37 @@ https://dev.mysql.com/downloads/mysql/
 `brew install mysql`
 <br><br>
 
-1. Run the setup script to create all of the procedures required for the database:<br>
-
+1. Create a copy of the `sample-setup` file and remove the 'sample-' prefix
+    <br>
+    
     **Bash**<br>
-    a) Create a copy of `sample-setup.sh` and rename the new file as `setup.sh`<br>
-    b) Modify the username, password and database parameters<br><br>
+    `sample-setup.sh -> setup.sh`
+
+    <br>
+
+    **PowerShell**<br>
+    `sample-setup.ps1 -> sample-setup.ps1`
+
+    <br>
+
+
+2. Modify the connection parameters in the newly created `setup` file
+    - MYSQL_PWD
+    - username
+    - host
+    - port
+    - database
+
+
+3. Run the setup script to create all of the objects in the target host/database:
+    <br>
+    
+    **Bash**<br>
     `bash setup.sh`
-    <br><br>
+
+    <br>
+    
     **Powershell**<br>
-    a) Create a copy of `sample-setup.ps` and rename the new file as `setup.ps1`<br>
-    b) Modify the username, password and database parameters<br><br>
     `powershell setup.ps1`
 
 

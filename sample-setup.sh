@@ -19,7 +19,8 @@ do
   mysql -u $username $database < $script
 done
 
-mysql -u $username $database -e "CALL PROC_CREATE_DB()"
+mysql -h $host -P $port -u $username $database -e "CALL \`$database\`.PROC_CREATE_DB"
+
 echo "$database Database Created!"
 
 unset MYSQL_PWD
