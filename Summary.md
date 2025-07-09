@@ -17,7 +17,7 @@
 11. Develop `PROC_CREATE_DB` procedure to create all database objects
 12. Instantiate database locally from scripts
 13. Unit test each database object
-    - Later enhanced database to develop procedures to load external data (insert new records, or update existing records)
+    - Later enhanced database to develop procedures to load data during ETL job (insert new records, or update existing records)
         - `PROC_LOAD_GAME`
         - `PROC_LOAD_TEAM`
         - `PROC_LOAD_ODDS`
