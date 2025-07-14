@@ -192,7 +192,11 @@ BEGIN
                     AND HOME_OVERALL_RECORD.RECORD_TYPE = 'Overall'
                 LEFT JOIN RECORDS HOME_CONFERENCE_RECORD
                     ON HOME.TEAM_ID = HOME_CONFERENCE_RECORD.TEAM_ID
-                    AND HOME_CONFERENCE_RECORD.RECORD_TYPE = 'Conference';
+                    AND HOME_CONFERENCE_RECORD.RECORD_TYPE = 'Conference'
+		ORDER BY
+			LEAGUE,
+			DATE,
+            TIME;
     /************************************************************/
     /************************************************************/
 
@@ -209,7 +213,7 @@ BEGIN
                 INNER JOIN USERS USER
                     ON PICK.USER_ID = USER.USER_ID;
     /************************************************************/
-
+    
 
     /***** GET_GAMES_VW *****/
     CREATE OR REPLACE VIEW GET_GAMES_VW AS
