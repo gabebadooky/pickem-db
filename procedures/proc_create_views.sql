@@ -319,6 +319,7 @@ BEGIN
     CREATE OR REPLACE VIEW GET_TEAMS_VW AS
         SELECT
             TEAM.TEAM_ID,
+            TEAM.LEAGUE,
             TEAM.CBS_CODE,
             TEAM.ESPN_CODE,
             TEAM.FOX_CODE,
