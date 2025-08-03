@@ -4,6 +4,7 @@ Last Update: 2/1/2025
 Description: This script creates all objects from the PICKEM_DB
 ******************************/
 
+
 CREATE DATABASE IF NOT EXISTS PICKEM_DB;
 USE PICKEM_DB;
 
