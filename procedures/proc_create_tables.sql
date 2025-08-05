@@ -137,7 +137,7 @@ BEGIN
         YEAR            YEAR            NOT NULL,
         CBS_CODE        VARCHAR(50)     NOT NULL,
         ESPN_CODE       VARCHAR(50)     NOT NULL,
-        FOX_CODE        VARCHAR(50)     NOT NULL,
+        FOX_CODE        VARCHAR(100)     NOT NULL,
         VEGAS_CODE      VARCHAR(50)     NOT NULL,
         AWAY_TEAM_ID    VARCHAR(100)    NOT NULL,
         HOME_TEAM_ID    VARCHAR(100)    NOT NULL,
