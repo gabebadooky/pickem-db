@@ -86,10 +86,10 @@ BEGIN
 
     CREATE TABLE IF NOT EXISTS ODDS (
         GAME_ID         VARCHAR(100)	NOT NULL,
-        GAME_CODE       VARCHAR(50)     NOT NULL,
+        GAME_CODE       VARCHAR(100)    NOT NULL,
         SOURCE          VARCHAR(10)     NULL,
-        AWAY_MONEYLINE  VARCHAR(5)      NULL,
-        HOME_MONEYLINE  VARCHAR(5)      NULL,
+        AWAY_MONEYLINE  VARCHAR(10)      NULL,
+        HOME_MONEYLINE  VARCHAR(10)      NULL,
         AWAY_SPREAD     VARCHAR(5)      NULL,
         HOME_SPREAD     VARCHAR(5)      NULL,
         OVER_UNDER      VARCHAR(5)      NULL,
