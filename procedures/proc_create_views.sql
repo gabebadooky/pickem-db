@@ -348,8 +348,55 @@ BEGIN
                     ON TEAM.TEAM_ID = CONFERENCE_RECORD.TEAM_ID
                     AND CONFERENCE_RECORD.RECORD_TYPE = 'Conference';
     /************************************************************/
-	
+    
+    
+    /************************************************************/
+    CREATE OR REPLACE VIEW IS_SYSTEM_UNDER_MAINTENANCE_VW AS
+		SELECT * FROM UNDER_MAINTENANCE;
+    /************************************************************/
 
+
+    /************************************************************/
+    CREATE OR REPLACE VIEW GET_LEADERBOAD_VW AS
+        SELECT
+            P.USER_ID,
+            G.WEEK,
+            G.LEAGUE,
+            G.YEAR,
+            AWAY.POWER_CONFERENCE AWAY_POWER_CONFERENCE,
+            HOME.POWER_CONFERENCE HOME_POWER_CONFERENCE,
+            
+            CASE
+                WHEN (
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
+                        >
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
+                ) AND G.AWAY_TEAM_ID = P.TEAM_PICKED
+                THEN S.REWARD
+                
+                WHEN (
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
+                        <
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
+                ) AND G.HOME_TEAM_ID = P.TEAM_PICKED
+                THEN S.REWARD
+
+                ELSE S.PENALTY
+            END POINTS
+
+        FROM
+            PICKS P
+                INNER JOIN GAMES G
+                    ON P.GAME_ID = G.GAME_ID
+                LEFT JOIN SCORING S
+                    ON P.PICK_WEIGHT = S.PICK_WEIGHT
+				INNER JOIN TEAMS AWAY
+					ON G.AWAY_TEAM_ID = AWAY.TEAM_ID
+				INNER JOIN TEAMS HOME
+					ON G.HOME_TEAM_ID = HOME.TEAM_ID
+        WHERE
+            G.GAME_FINISHED = 0;
+    /************************************************************/
 
 END //
 
