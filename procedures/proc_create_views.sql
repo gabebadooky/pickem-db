@@ -268,19 +268,19 @@ BEGIN
             VEGAS_ODDS.AWAY_WIN_PERCENTAGE VEGAS_AWAY_WIN_PERCENTAGE,
             VEGAS_ODDS.HOME_WIN_PERCENTAGE VEGAS_HOME_WIN_PERCENTAGE,
 
-            AWAY_BS.Q1_SCORE HOME_Q1_BOX_SCORE,
-            AWAY_BS.Q2_SCORE HOME_Q2_BOX_SCORE,
-            AWAY_BS.Q3_SCORE HOME_Q3_BOX_SCORE,
-            AWAY_BS.Q4_SCORE HOME_Q4_BOX_SCORE,
-            AWAY_BS.OVERTIME HOME_OVERTIME_BOX_SCORE,
-            AWAY_BS.TOTAL HOME_TOTAL_BOX_SCORE,
+            AWAY_BS.Q1_SCORE AWAY_Q1_BOX_SCORE,
+            AWAY_BS.Q2_SCORE AWAY_Q2_BOX_SCORE,
+            AWAY_BS.Q3_SCORE AWAY_Q3_BOX_SCORE,
+            AWAY_BS.Q4_SCORE AWAY_Q4_BOX_SCORE,
+            AWAY_BS.OVERTIME AWAY_OVERTIME_BOX_SCORE,
+            AWAY_BS.TOTAL AWAY_TOTAL_BOX_SCORE,
 
-            HOME_BS.Q1_SCORE AWAY_Q1_BOX_SCORE,
-            HOME_BS.Q2_SCORE AWAY_Q2_BOX_SCORE,
-            HOME_BS.Q3_SCORE AWAY_Q3_BOX_SCORE,
-            HOME_BS.Q4_SCORE AWAY_Q4_BOX_SCORE,
-            HOME_BS.OVERTIME AWAY_OVERTIME_BOX_SCORE,
-            HOME_BS.TOTAL  AWAY_TOTAL_BOX_SCORE
+            HOME_BS.Q1_SCORE HOME_Q1_BOX_SCORE,
+            HOME_BS.Q2_SCORE HOME_Q2_BOX_SCORE,
+            HOME_BS.Q3_SCORE HOME_Q3_BOX_SCORE,
+            HOME_BS.Q4_SCORE HOME_Q4_BOX_SCORE,
+            HOME_BS.OVERTIME HOME_OVERTIME_BOX_SCORE,
+            HOME_BS.TOTAL HOME_TOTAL_BOX_SCORE
 
         FROM
 			GAMES GAME
@@ -361,11 +361,14 @@ BEGIN
     CREATE OR REPLACE VIEW GET_LEADERBOAD_VW AS
         SELECT
             P.USER_ID,
+            U.USERNAME,
             G.WEEK,
             G.LEAGUE,
             G.YEAR,
             AWAY.POWER_CONFERENCE AWAY_POWER_CONFERENCE,
             HOME.POWER_CONFERENCE HOME_POWER_CONFERENCE,
+            AWAY.RANKING AWAY_RANKING,
+            HOME.RANKING HOME_RANKING,
             
             CASE
                 WHEN (
@@ -383,10 +386,48 @@ BEGIN
                 THEN S.REWARD
 
                 ELSE S.PENALTY
-            END POINTS
+            END POINTS,
+            
+            CASE
+                WHEN (
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
+                        >
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
+                ) AND G.AWAY_TEAM_ID = P.TEAM_PICKED
+                THEN 1
+                
+                WHEN (
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
+                        <
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
+                ) AND G.HOME_TEAM_ID = P.TEAM_PICKED
+                THEN 1
+
+                ELSE 0
+            END CORRECT_PICK,
+            
+            CASE
+                WHEN (
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
+                        >
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
+                ) AND G.AWAY_TEAM_ID = P.TEAM_PICKED
+                THEN 0
+                
+                WHEN (
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
+                        <
+                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
+                ) AND G.HOME_TEAM_ID = P.TEAM_PICKED
+                THEN 0
+
+                ELSE 1
+            END INCORRECT_PICK
 
         FROM
             PICKS P
+				INNER JOIN USERS U
+					ON P.USER_ID = U.USER_ID
                 INNER JOIN GAMES G
                     ON P.GAME_ID = G.GAME_ID
                 LEFT JOIN SCORING S
@@ -396,7 +437,7 @@ BEGIN
 				INNER JOIN TEAMS HOME
 					ON G.HOME_TEAM_ID = HOME.TEAM_ID
         WHERE
-            G.GAME_FINISHED = 0;
+            G.GAME_FINISHED = 1;
     /************************************************************/
 
 END //
