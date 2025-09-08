@@ -4,7 +4,7 @@ Last Update: 3/5/2025
 Description: This script drops all constraints from the PICKEM_DB
 ******************************/
 
-USE PICKEM_DB;
+-- USE PICKEM_DB;
 
 DELIMITER //
 

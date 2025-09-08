@@ -5,7 +5,7 @@ Description: This script inserts a new odds record if one does not
 				already exist or updates the existing one
 ******************************/
 
-USE PICKEM_DB;
+-- USE PICKEM_DB;
 
 DELIMITER //
 

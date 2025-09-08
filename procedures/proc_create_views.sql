@@ -13,7 +13,7 @@ GET_TEAMS_VW: View that returns teams-related data, intended to be
 
 ******************************/
 
-USE PICKEM_DB;
+-- USE PICKEM_DB;
 
 DELIMITER //
 
@@ -25,7 +25,7 @@ BEGIN
 
 	/***** GET_USER_IDS_VW *****/
     CREATE OR REPLACE VIEW GET_USER_IDS_VW AS
-		SELECT USER_ID, USERNAME FROM USERS;
+		SELECT USER_ID, DISPLAY_NAME FROM USERS;
     /*****************************************/
 
     /***** GET_USER_PICKS_VW *****/
@@ -361,7 +361,7 @@ BEGIN
     CREATE OR REPLACE VIEW GET_LEADERBOAD_VW AS
         SELECT
             P.USER_ID,
-            U.USERNAME,
+            U.DISPLAY_NAME,
             G.WEEK,
             G.LEAGUE,
             G.YEAR,

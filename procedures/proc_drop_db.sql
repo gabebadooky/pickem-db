@@ -5,7 +5,7 @@ Description: This script drops all objects from the PICKEM_DB in the
                 proper sequence to avoid violating database constraints
 ******************************/
 
-USE PICKEM_DB;
+-- USE PICKEM_DB;
 
 DELIMITER //
 

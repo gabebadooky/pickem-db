@@ -11,7 +11,7 @@ Returns:
     - 'status message'
 ******************************/
 
-USE PICKEM_DB;
+-- USE PICKEM_DB;
 
 DELIMITER //
 

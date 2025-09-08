@@ -5,7 +5,7 @@ Description: This script defines the tables and constraints
              for the PICKEM_DB database.
 ******************************/
 
-USE PICKEM_DB;
+-- USE PICKEM_DB;
 
 DELIMITER //
 
@@ -37,6 +37,7 @@ BEGIN
         USER_ID         INT             NOT NULL    AUTO_INCREMENT,
         USERNAME        VARCHAR(50)     NOT NULL,
         PWDHASH         VARCHAR(150)    NOT NULL,
+        DISPLAY_NAME	VARCHAR(50)		NULL,
         FAVORITE_TEAM	VARCHAR(100)	NULL,
         NOTIFICATION_PREF   CHAR(1)     NULL,
         EMAIL_ADDRESS   VARCHAR(75)     NULL,

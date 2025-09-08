@@ -5,7 +5,7 @@ Description: This script deletes all data from the PICKEM_DB in the
                 proper sequence to avoid violating FK constraints
 ******************************/
 
-USE PICKEM_DB;
+-- USE PICKEM_DB;
 
 DELIMITER //
 
