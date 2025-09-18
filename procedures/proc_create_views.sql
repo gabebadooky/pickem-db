@@ -27,6 +27,21 @@ BEGIN
     CREATE OR REPLACE VIEW GET_USER_IDS_VW AS
 		SELECT USER_ID, DISPLAY_NAME FROM USERS;
     /*****************************************/
+    
+    /***** GET_ALL_USERS_VW *****/
+    CREATE OR REPLACE VIEW GET_ALL_USERS_VW AS
+		SELECT 
+			USER_ID,
+            USERNAME,
+            DISPLAY_NAME,
+            FAVORITE_TEAM,
+            NOTIFICATION_PREF,
+            EMAIL_ADDRESS,
+            PHONE
+		FROM
+			USERS;
+    /*****************************************/
+    
 
     /***** GET_USER_PICKS_VW *****/
     /*****************************************/
