@@ -37,7 +37,8 @@ BEGIN
             FAVORITE_TEAM,
             NOTIFICATION_PREF,
             EMAIL_ADDRESS,
-            PHONE
+            PHONE,
+            DEFAULT_GAME_MODE
 		FROM
 			USERS;
     /*****************************************/
@@ -240,7 +241,12 @@ BEGIN
             GAME.AWAY_TEAM_ID,
             GAME.HOME_TEAM_ID,
             GAME.DATE,
-            GAME.TIME,
+            
+            CASE
+				WHEN GAME.TIME = '04:00:00' THEN '20:00:00'
+                ELSE GAME.TIME
+            END TIME,
+            
             GAME.TV_COVERAGE,
             GAME.STADIUM,
             GAME.CITY,
@@ -422,21 +428,25 @@ BEGIN
             END CORRECT_PICK,
             
             CASE
-                WHEN (
-                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
-                        >
-                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
-                ) AND G.AWAY_TEAM_ID = P.TEAM_PICKED
-                THEN 0
-                
-                WHEN (
-                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
-                        <
-                    (SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
-                ) AND G.HOME_TEAM_ID = P.TEAM_PICKED
-                THEN 0
+                WHEN (P.TEAM_PICKED != G.AWAY_TEAM_ID AND P.TEAM_PICKED != HOME_TEAM_ID) THEN 0
+                ELSE
+					CASE
+						WHEN (
+							(SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
+								>
+							(SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
+						) AND G.AWAY_TEAM_ID = P.TEAM_PICKED
+						THEN 0
+						
+						WHEN (
+							(SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.AWAY_TEAM_ID)
+								<
+							(SELECT B.TOTAL FROM BOX_SCORES B WHERE B.GAME_ID = G.GAME_ID AND B.TEAM_ID = G.HOME_TEAM_ID)
+						) AND G.HOME_TEAM_ID = P.TEAM_PICKED
+						THEN 0
 
-                ELSE 1
+						ELSE 1
+					END
             END INCORRECT_PICK
 
         FROM
