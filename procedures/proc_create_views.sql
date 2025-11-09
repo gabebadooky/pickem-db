@@ -376,6 +376,141 @@ BEGIN
     CREATE OR REPLACE VIEW IS_SYSTEM_UNDER_MAINTENANCE_VW AS
 		SELECT * FROM UNDER_MAINTENANCE;
     /************************************************************/
+    
+    
+    /************************************************************/
+    CREATE OR REPLACE VIEW CALCULATE_PICK_SCORES_VW AS
+		SELECT
+			P.USER_ID,
+			P.GAME_ID,
+			CASE
+				WHEN (P.TEAM_PICKED = G.AWAY_TEAM_ID AND AWAY_SCORE.TOTAL > HOME_SCORE.TOTAL)
+					THEN S.REWARD
+				WHEN (P.TEAM_PICKED = G.HOME_TEAM_ID AND HOME_SCORE.TOTAL > AWAY_SCORE.TOTAL)
+					THEN S.REWARD
+				ELSE S.PENALTY
+			END POINTS
+		FROM
+			PICKS P
+				INNER JOIN GAMES G
+					ON P.GAME_ID = G.GAME_ID
+				INNER JOIN BOX_SCORES AWAY_SCORE
+					ON G.GAME_ID = AWAY_SCORE.GAME_ID
+					AND G.AWAY_TEAM_ID = AWAY_SCORE.TEAM_ID
+				INNER JOIN BOX_SCORES HOME_SCORE
+					ON G.GAME_ID = HOME_SCORE.GAME_ID
+					AND G.HOME_TEAM_ID = HOME_SCORE.TEAM_ID
+				INNER JOIN SCORING S
+					ON P.PICK_WEIGHT = S.PICK_WEIGHT
+		WHERE
+			P.TEAM_PICKED <> '';
+    /************************************************************/
+    
+    
+    /************************************************************/
+    SELECT
+		S.USER_ID,
+		G.WEEK,
+		G.LEAGUE,
+		
+		CASE
+			WHEN (AWAY_TEAM.RANKING IS NOT NULL OR HOME_TEAM.RANKING IS NOT NULL) THEN 1
+			ELSE 0
+		END TOP_25_MATCHUP,
+		
+		CASE
+			WHEN (AWAY_TEAM.POWER_CONFERENCE = 1 OR HOME_TEAM.POWER_CONFERENCE = 1) THEN 1
+			ELSE 0
+		END P4_MATCHUP,
+		
+		CASE
+			WHEN (AWAY_TEAM.POWER_CONFERENCE = 0 OR HOME_TEAM.POWER_CONFERENCE = 0) THEN 1
+			ELSE 0
+		END G6_MATCHUP,
+		
+		SUM(S.POINTS) TOTAL_POINTS,
+		
+		SUM(
+			CASE
+				WHEN (S.POINTS > 0) THEN 1
+				ELSE 0
+			END
+		) CORRECT_PICKS,
+		
+		SUM(
+			CASE
+				WHEN (S.POINTS <= 0) THEN 1
+				ELSE 0
+			END
+		) INCORRECT_PICKS,
+		
+		COUNT(*) PICKS_SUBMITTED
+		
+	FROM
+		GAMES G
+			LEFT JOIN CALCULATE_PICK_SCORES_VW S
+				ON G.GAME_ID = S.GAME_ID
+			INNER JOIN TEAMS AWAY_TEAM
+				ON G.AWAY_TEAM_ID = AWAY_TEAM.TEAM_ID
+			INNER JOIN TEAMS HOME_TEAM
+				ON G.HOME_TEAM_ID = HOME_TEAM.TEAM_ID
+	WHERE
+		G.GAME_FINISHED = 1
+		AND G.LEAGUE = 'CFB' AND G.WEEK = 11 AND S.USER_ID = 16
+	GROUP BY
+		S.USER_ID,
+		G.WEEK,
+		G.LEAGUE,
+		
+		CASE
+			WHEN (AWAY_TEAM.RANKING IS NOT NULL OR HOME_TEAM.RANKING IS NOT NULL) THEN 1
+			ELSE 0
+		END,
+		CASE
+			WHEN (AWAY_TEAM.POWER_CONFERENCE = 1 OR HOME_TEAM.POWER_CONFERENCE = 1) THEN 1
+			ELSE 0
+		END,
+		CASE
+			WHEN (AWAY_TEAM.POWER_CONFERENCE = 0 OR HOME_TEAM.POWER_CONFERENCE = 0) THEN 1
+			ELSE 0
+		END
+		
+	ORDER BY
+		SUM(S.POINTS) DESC;
+	/************************************************************/
+    
+    
+    /************************************************************/
+    CREATE OR REPLACE VIEW GET_LEADERBOARD_VW AS 
+		SELECT
+			S.USER_ID,
+			G.WEEK,
+			SUM(S.POINTS),
+			
+			SUM(
+				CASE
+					WHEN (S.POINTS > 0) THEN 1
+					ELSE 0
+				END
+			) CORRECT_PICKS,
+			
+			SUM(
+				CASE
+					WHEN (S.POINTS <= 0) THEN 1
+					ELSE 0
+				END
+			) INCORRECT_PICKS
+			
+		FROM
+			CALCULATE_PICK_SCORES_VW S
+				INNER JOIN GAMES G
+					ON S.GAME_ID = G.GAME_ID
+		WHERE
+			G.GAME_FINISHED = 1
+		GROUP BY
+			S.USER_ID,
+			G.WEEK;
+    /************************************************************/
 
 
     /************************************************************/
